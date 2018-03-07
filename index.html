@@ -9,14 +9,38 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
 
     <style>
+    	@font-face {
+        font-family: 'SharpGroteskDB';
+        src: url('fonts/SharpGroteskMedium22.woff2') format('woff2'),
+            url('fonts/SharpGroteskMedium22.woff') format('woff');
+        font-weight: 500;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'SharpGroteskDB';
+        src: url('fonts/SharpGroteskBook22.woff2') format('woff2'),
+            url('fonts/SharpGroteskBook22.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      @font-face {
+        font-family: 'SharpGroteskDB';
+        src: url('fonts/SharpGroteskSmBold22.woff2') format('woff2'),
+            url('fonts/SharpGroteskSmBold22.woff') format('woff');
+        font-weight: bold;
+        font-style: normal;
+      }
+
     	*,*:before,*:after {
     		box-sizing: border-box;
     	}
     	body {
     		background-color: #262626;
     		color: #ccc;
-    		font-family: Apercu mono;
-				font-size: 14px;
+    		font-family: 'SharpGroteskDB';
+				font-size: 16px;
 				line-height: 22px;
 
     		-webkit-font-smoothing: antialiased;
@@ -52,7 +76,7 @@
 				padding: 0 24px;
 				max-width: 1280px;
 				font-size: 20px;
-				font-family: Apercu;
+        font-weight: bold;
     	}
     	@media (min-width: 720px) {
 				.main-title {
@@ -97,7 +121,7 @@
     	}
     	.release-name {
     		margin: 0;
-    		font-weight: 400;
+    		font-weight: bold;
     		font-size: inherit;
     		line-height: inherit;
     	}
@@ -172,9 +196,12 @@
     		display: flex;
     	}
     	.date-day {
-    		width: 114px;
-    		opacity: .4;
-    		flex-shrink: 0;
+        width: 114px;
+        opacity: .4;
+        flex-shrink: 0;
+      }
+      .date-place {
+    		font-weight: bold;
     	}
     	.section {
     		margin-bottom: 128px;
