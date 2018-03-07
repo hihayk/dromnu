@@ -1,6 +1,7 @@
+
 <!doctype html>
 <html>
-	<head>
+  <head>
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
@@ -9,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
 
     <style>
-    	@font-face {
+      @font-face {
         font-family: 'SharpGroteskDB';
         src: url('fonts/SharpGroteskMedium22.woff2') format('woff2'),
             url('fonts/SharpGroteskMedium22.woff') format('woff');
@@ -33,430 +34,488 @@
         font-style: normal;
       }
 
-    	*,*:before,*:after {
-    		box-sizing: border-box;
-    	}
-    	body {
-    		background-color: #262626;
-    		color: #ccc;
-    		font-family: 'SharpGroteskDB';
-				font-size: 16px;
-				line-height: 22px;
+      *,*:before,*:after {
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #262626;
+        color: #ccc;
+        font-family: 'SharpGroteskDB';
+        font-size: 16px;
+        line-height: 22px;
 
-    		-webkit-font-smoothing: antialiased;
-				-moz-osx-font-smoothing: grayscale;
-    	}
-    	img {
-    		max-width: 100%;
-    	}
-    	a {
-    		color: inherit;
-    		text-decoration: none;
-    	}
-    	.link {
-    		display: inline-block;
-				box-shadow: inset 0 -1px rgba(255,255,255,.2);
-    	}
-			@media (min-width: 720px) {
-	    	.intro-section {
-	    		min-height: 90vh;
-	    		display: flex;
-	    		align-items: center;
-	    		width: 100%;
-	    		margin-bottom: 64px;
-	    	}
-    	}
-    	.intro-section-content {
-    		width: 100%;	
-    	}
-    	.main-title {
-				color: white;
-				display: flex;
-				margin: 24px auto 64px auto;
-				padding: 0 24px;
-				max-width: 1280px;
-				font-size: 20px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      @media (max-width: 720px) {
+        body {
+          font-size: 14px;
+          line-height: 18px;
+        }
+      }
+      img {
+        max-width: 100%;
+      }
+      a {
+        display: inline-block;
+        color: inherit;
+        text-decoration: none;
+      }
+      .link {
+        box-shadow: inset 0 -1px rgba(255,255,255,.2);
+      }
+      @media (min-width: 720px) {
+        .intro-section {
+          min-height: 90vh;
+          display: flex;
+          align-items: center;
+          width: 100%;
+          margin-bottom: 64px;
+        }
+      }
+      .intro-section-content {
+        width: 100%;  
+      }
+      .main-title {
+        color: white;
+        display: flex;
+        margin: 24px auto 64px auto;
+        padding: 0 32px;
+        max-width: 1280px;
+        font-size: 20px;
         font-weight: bold;
-    	}
-    	@media (min-width: 720px) {
-				.main-title {
-    			padding: 0 96px;
-    			margin: -96px auto 0 auto;
-    		}
-    	}
-    	.main-title span:not(:last-child) {
-				flex-grow: 1;
-    	}
-    	.intro-image-section {
-    		display: flex;
-    		justify-content: center;
-    		align-items: flex-start;
-    	}
-    	.release-cover-image {
-    		max-width: 128px;
-    		mix-blend-mode: screen;
-    		filter: grayscale(100%);
-    		transition: .4s;
-    	}
-    	.container {
-    		max-width: 688px;
-    		padding-left: 24px;
-    		padding-right: 24px;
-    		margin: 0 auto;
-    	}
-    	.release-box {
-    		display: flex;
-    		padding-bottom: 32px;
-    		background-color: #262626;
-    		transition: .4s;
-    	}
-    	.release-box:hover {
-    		background-color: transparent;
-    	}
-    	.release-box:hover .release-cover-image {
-    		filter: grayscale(0%);
-    	}
-    	.release-cover {
-    		margin-right: 32px;
-    	}
-    	.release-name {
-    		margin: 0;
-    		font-weight: bold;
-    		font-size: inherit;
-    		line-height: inherit;
-    	}
-    	.release-label {
-    		margin: 0;
-    		font: inherit;
-    		opacity: .5;
-    	}
-    	.release-year {
-    		opacity: .2;
-    	}
-    	.release-vinyl {
-    		flex-shrink: 0;
-    		background-color: #181818;
-    		width: 128px;
-    		height: 128px;
-    		margin-left: -160px;
-				margin-right: 32px;
-    		border-radius: 50%;
-    		position: relative;
-    		filter: grayscale(100%);
-    		transition: .4s;
-    	}
-    	.release-box:hover .release-vinyl {
-    		filter: grayscale(0%);
-    	}
-    	.release-vinyl:before {
-    		content: '';
-    		width: 48px;
-    		height: 48px;
-    		position: absolute;
-    		border-radius: 50%;
-    		left: 0;
-    		right: 0;
-    		top: 0;
-    		bottom: 0;
-    		margin: auto;
-    		background-size: 48px;
-    	}
-    	.release-vinyl:after {
-    		content: '';
-    		background-color: #262626;
-    		width: 4px;
-    		height: 4px;
-    		position: absolute;
-    		border-radius: 50%;
-    		left: 0;
-    		right: 0;
-    		top: 0;
-    		bottom: 0;
-    		margin: auto;
-    	}
-    	.release-vinyl-tnank:before {
-    		background-image: url('images/tnank-label.png');
-    	}
-    	.release-vinyl-va:before {
-    		background-image: url('images/va-label.png');
-    	}
-    	.release-vinyl-deu:before {
-    		background-image: url('images/deu-label.png');
-    	}
-    	.release-vinyl-deu {
-    		background-color: #AE0200;
-    	}
-    	.play-section {
-    		margin-top: 8px;
-    	}
-    	.play-link {
-    		opacity: .5;
-    	}
-    	.date-row {
-    		display: flex;
-    	}
-    	.date-day {
-        width: 114px;
+        
+      }
+      @media (min-width: 720px) {
+        .main-title {
+          padding: 0 96px;
+          margin: -96px auto 0 auto;
+        }
+      }
+      .main-title span:not(:last-child) {
+        flex-grow: 1;
+      }
+      .intro-image-section {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+      }
+      .release-cover-image {
+        max-width: 128px;
+        mix-blend-mode: screen;
+        filter: grayscale(100%);
+        transition: .4s;
+      }
+      .container {
+        max-width: 704px;
+        padding-left: 32px;
+        padding-right: 32px;
+        margin: 0 auto;
+      }
+      .release-box {
+        display: flex;
+        padding-bottom: 32px;
+        background-color: #262626;
+        transition: .4s;
+      }
+      .release-box:hover {
+        background-color: transparent;
+      }
+      .release-box:hover .release-cover-image {
+        filter: grayscale(0%);
+      }
+      .release-cover {
+        margin-right: 32px;
+      }
+      @media (max-width: 720px) {
+        .release-cover {
+          margin-right: 16px;
+        }
+      }
+      .release-name {
+        margin: 0;
+        font-weight: bold;
+        font-size: inherit;
+        line-height: inherit;
+      }
+      .release-label {
+        margin: 0;
+        font: inherit;
         opacity: .4;
+      }
+      .release-year {
+        opacity: .4;
+      }
+      .release-vinyl {
+        flex-shrink: 0;
+        background-color: #181818;
+        width: 128px;
+        height: 128px;
+        margin-left: -160px;
+        margin-right: 32px;
+        border-radius: 50%;
+        position: relative;
+        filter: grayscale(100%);
+        transition: .4s;
+      }
+      .release-box:hover .release-vinyl {
+        filter: grayscale(0%);
+      }
+      .release-vinyl:before {
+        content: '';
+        width: 48px;
+        height: 48px;
+        position: absolute;
+        border-radius: 50%;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        background-size: 48px;
+      }
+      .release-vinyl:after {
+        content: '';
+        background-color: #262626;
+        width: 4px;
+        height: 4px;
+        position: absolute;
+        border-radius: 50%;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        margin: auto;
+      }
+      .release-vinyl-tnank:before {
+        background-image: url('images/tnank-label.png');
+      }
+      .release-vinyl-va:before {
+        background-image: url('images/va-label.png');
+      }
+      .release-vinyl-deu:before {
+        background-image: url('images/deu-label.png');
+      }
+      .release-vinyl-deu {
+        background-color: #AE0200;
+      }
+      .date-row {
+        display: flex;
+      }
+      @media (max-width: 720px) {
+        .date-row {
+          flex-direction: column;
+          align-items: flex-start;
+          margin-bottom: 8px;
+        }
+      }
+      .date-day {
+        width: 160px;
+        opacity: .3;
         flex-shrink: 0;
       }
+      .date-type {
+        opacity: .3;
+      }
       .date-place {
-    		font-weight: bold;
-    	}
-    	.section {
-    		margin-bottom: 128px;
-    	}
-    	.social-links {
-    		margin-bottom: 8px;
-    	}
-    	.social-link {
-    		margin-right: 4px;
-    	}
-    	.email-section {
-    		opacity: .4;
-    	}
+        margin-right: 8px;
+      }
+      .section {
+        margin-bottom: 128px;
+      }
+      .social-links {
+        margin-bottom: 8px;
+      }
+      @media (max-width: 720px) {
+        .social-links {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+      .social-link {
+        margin-right: 4px;
+      }
+      .email-section {
+        opacity: .4;
+      }
+      .play-section {
+        margin-top: 8px;
+      }
+      .play-link {
+        opacity: .5;
+      }
+      .player-section {
+        margin-bottom: 32px;
+      }
     </style>
-	</head>
+  </head>
   <body>
-		
-		<div class="intro-section">
-			<div class="intro-section-content">
-				<div class="intro-image-section">
-					<img src="images/dromnu.png" alt="Drömnu">
-				</div>
-				
-				<div class="main-title">
-					<span>D</span>
-					<span>R</span>
-					<span>Ö</span>
-					<span>M</span>
-					<span>N</span>
-					<span>U</span>
-				</div>
-			</div>
-		</div>
+    
+    <div class="intro-section">
+      <div class="intro-section-content">
+        <div class="intro-image-section">
+          <img src="images/dromnu.png" alt="Drömnu">
+        </div>
+        
+        <div class="main-title">
+          <span>D</span>
+          <span>R</span>
+          <span>Ö</span>
+          <span>M</span>
+          <span>N</span>
+          <span>U</span>
+        </div>
+      </div>
+    </div>
 
-		<div class="container">
-			<div class="releases-section section">
+    <!-- <div class="container">
+      <div class="player-section section">
+        <iframe src="https://open.spotify.com/embed/artist/1EAyXyzI7tcETjn8CMJlhC" width="100%" frameborder="0" allowtransparency="true"></iframe>
+      </div>
+    </div> -->
 
-				<div class="release-box">
-					<div class="release-vinyl release-vinyl-tnank"></div>
+    <div class="container">
+      <div class="releases-section section">
 
-					<div class="release-cover">
-						<img src="images/tnank-cover.png" alt="tnank-cover" class="release-cover-image">
-					</div>
-					<div class="release-info">
-						<h2 class="release-name">
-							Tnank LP
-						</h2>
-						<h3 class="release-label">
-							Lapsus Records
-						</h3>
-						<div class="release-year">
-							2015
-						</div>
-						<div class="play-section">
-							<a href="https://open.spotify.com/album/4xKxrGhqDOtRck3Q4sN07s" class="play-link" target="_blank">
-								<img src="images/spotify.svg" alt="Spotify">
-							</a>
-						</div>
-					</div>
-				</div>
+        <div class="release-box">
+          <div class="release-vinyl release-vinyl-tnank"></div>
 
-				<div class="release-box">
-					<div class="release-cover">
-						<img src="images/watching-darkness.png" alt="watching darkness" class="release-cover-image">
-					</div>
-					<div class="release-info">
-						<h2 class="release-name">
-							Watching Darkness EP
-						</h2>
-						<h3 class="release-label">
-							Neonized Records
-						</h3>
-						<div class="release-year">
-							2012
-						</div>
-					</div>
-				</div>
+          <div class="release-cover">
+            <img src="images/tnank-cover.png" alt="tnank-cover" class="release-cover-image">
+          </div>
+          <div class="release-info">
+            <h2 class="release-name">
+              Tnank LP
+            </h2>
+            <h3 class="release-label">
+              Lapsus Records
+            </h3>
+            <div class="release-year">
+              2015
+            </div>
+            <div class="play-section">
+              <a href="https://open.spotify.com/album/4xKxrGhqDOtRck3Q4sN07s" class="play-link" target="_blank">
+                <img src="images/spotify.svg" alt="Spotify">
+              </a>
+            </div>
+          </div>
+        </div>
 
-				<div class="release-box">
-					<div class="release-cover">
-						<img src="images/the-witches-ride.png" alt="the witches ride" class="release-cover-image">
-					</div>
-					<div class="release-info">
-						<h2 class="release-name">
-							The Witches Ride EP
-						</h2>
-						<h3 class="release-label">
-							Neonized Records
-						</h3>
-						<div class="release-year">
-							2012
-						</div>
-					</div>
-				</div>
+        <div class="release-box">
+          <div class="release-cover">
+            <img src="images/watching-darkness.png" alt="watching darkness" class="release-cover-image">
+          </div>
+          <div class="release-info">
+            <h2 class="release-name">
+              Watching Darkness EP
+            </h2>
+            <h3 class="release-label">
+              Neonized Records
+            </h3>
+            <div class="release-year">
+              2012
+            </div>
+            <div class="play-section">
+              <a href="https://open.spotify.com/album/4dNA59087bNjXoqcTmdCku" class="play-link" target="_blank">
+                <img src="images/spotify.svg" alt="Spotify">
+              </a>
+            </div>
+          </div>
+        </div>
 
-				<div class="release-box">
-					<div class="release-vinyl release-vinyl-va"></div>
+        <div class="release-box">
+          <div class="release-cover">
+            <img src="images/the-witches-ride.png" alt="the witches ride" class="release-cover-image">
+          </div>
+          <div class="release-info">
+            <h2 class="release-name">
+              The Witches Ride EP
+            </h2>
+            <h3 class="release-label">
+              Neonized Records
+            </h3>
+            <div class="release-year">
+              2012
+            </div>
+          </div>
+        </div>
 
-					<div class="release-cover">
-						<img src="images/va.png" alt="va" class="release-cover-image">
-					</div>
-					<div class="release-info">
-						<h2 class="release-name">
-							VA — SH01
-						</h2>
-						<h3 class="release-label">
-							SIN HILO Records
-						</h3>
-						<div class="release-year">
-							2015
-						</div>
-					</div>
-				</div>
+        <div class="release-box">
+          <div class="release-vinyl release-vinyl-va"></div>
 
-				<div class="release-box">
-					<div class="release-vinyl release-vinyl-deu"></div>
+          <div class="release-cover">
+            <img src="images/va.png" alt="va" class="release-cover-image">
+          </div>
+          <div class="release-info">
+            <h2 class="release-name">
+              VA — SH01
+            </h2>
+            <h3 class="release-label">
+              SIN HILO Records
+            </h3>
+            <div class="release-year">
+              2015
+            </div>
+            <div class="play-section">
+              <a href="https://open.spotify.com/track/4LUDIggJ0RjJ83xBa6kG8V" class="play-link" target="_blank">
+                <img src="images/spotify.svg" alt="Spotify">
+              </a>
+            </div>
+          </div>
+        </div>
 
-					<div class="release-cover">
-						<img src="images/deu.png" alt="deu" class="release-cover-image">
-					</div>
-					<div class="release-info">
-						<h2 class="release-name">
-							DEU
-						</h2>
-						<h3 class="release-label">
-							Lapsus Records
-						</h3>
-						<div class="release-year">
-							2015
-						</div>
-					</div>
-				</div>
+        <div class="release-box">
+          <div class="release-vinyl release-vinyl-deu"></div>
 
-				<div class="release-box">
-					<div class="release-cover">
-						<img src="images/heartsrevolution-dromnu-remix.png" alt="heartsrevolution dromnu remix" class="release-cover-image">
-					</div>
-					<div class="release-info">
-						<h2 class="release-name">
-							Heartsrevolution 
-							<br>
-							Remix
-						</h2>
-						<h3 class="release-label">
-							Owsla Records
-						</h3>
-						<div class="release-year">
-							2015
-						</div>
-					</div>
-				</div>
+          <div class="release-cover">
+            <img src="images/deu.png" alt="deu" class="release-cover-image">
+          </div>
+          <div class="release-info">
+            <h2 class="release-name">
+              DEU
+            </h2>
+            <h3 class="release-label">
+              Lapsus Records
+            </h3>
+            <div class="release-year">
+              2015
+            </div>
+            <div class="play-section">
+              <a href="https://open.spotify.com/album/3DcauUJh22wxt0gy4fHrPL" class="play-link" target="_blank">
+                <img src="images/spotify.svg" alt="Spotify">
+              </a>
+            </div>
+          </div>
+        </div>
 
-				<div class="release-box">
-					<div class="release-cover">
-						<img src="images/pina-dromnu-remix.png" alt="pina dromnu remix" class="release-cover-image">
-					</div>
-					<div class="release-info">
-						<h2 class="release-name">
-							Pina
-							<br>
-							Remix
-						</h2>
-						<h3 class="release-label">
-							SIN HILO Records
-						</h3>
-						<div class="release-year">
-							2015
-						</div>
-					</div>
-				</div>
+        <div class="release-box">
+          <div class="release-cover">
+            <img src="images/heartsrevolution-dromnu-remix.png" alt="heartsrevolution dromnu remix" class="release-cover-image">
+          </div>
+          <div class="release-info">
+            <h2 class="release-name">
+              Heartsrevolution 
+              <br>
+              Remix
+            </h2>
+            <h3 class="release-label">
+              Owsla Records
+            </h3>
+            <div class="release-year">
+              2015
+            </div>
+          </div>
+        </div>
 
-			</div>
-		</div>
+        <div class="release-box">
+          <div class="release-cover">
+            <img src="images/pina-dromnu-remix.png" alt="pina dromnu remix" class="release-cover-image">
+          </div>
+          <div class="release-info">
+            <h2 class="release-name">
+              Pina
+              <br>
+              Remix
+            </h2>
+            <h3 class="release-label">
+              Lapsus Records
+            </h3>
+            <div class="release-year">
+              2015
+            </div>
+            <div class="play-section">
+              <a href="https://open.spotify.com/track/0G1422iQQYZK3EVMmoDfMG" class="play-link" target="_blank">
+                <img src="images/spotify.svg" alt="Spotify">
+              </a>
+            </div>
+          </div>
+        </div>
 
-		<div class="container">
-			<div class="dates-section section">
-				<div class="dates">
-					<div class="date-row">
-						<div class="date-day">16/06/2016</div>
-						<div class="date-place">Stepbystep Collective</div>
-					</div>
-					<div class="date-row">
-						<div class="date-day">15/01/2016</div>
-						<div class="date-place">Razzmatazz</div>
-					</div>
-					<div class="date-row">
-						<div class="date-day">14/11/2015</div>
-						<div class="date-place">VERSAL</div>
-					</div>
-					<div class="date-row">
-						<div class="date-day">11/04/2015</div>
-						<div class="date-place">Lapsus festival</div>
-					</div>
-					<div class="date-row">
-						<div class="date-day">22/02/2015</div>
-						<div class="date-place">Red Bull Music Academy Bass Camp</div>
-					</div>
-					<div class="date-row">
-						<div class="date-day">14/11/2014</div>
-						<div class="date-place">Razzmatazz</div>
-					</div>	
-					<div class="date-row">
-						<div class="date-day">15/09/2014</div>
-						<div class="date-place">Mira Festival</div>
-					</div>
-					<div class="date-row">
-						<div class="date-day">16/11/2013</div>
-						<div class="date-place">Mira Festival</div>
-					</div>
-					<div class="date-row">
-						<div class="date-day">16/06/2013</div>
-						<div class="date-place">Sonar Festival</div>
-					</div>
-					<div class="date-row">
-						<div class="date-day">04/06/2013</div>
-						<div class="date-place">Fabrica Moritz</div>
-					</div>
-					<div class="date-row">
-						<div class="date-day">26/01/2013</div>
-						<div class="date-place">Discos Paradisco</div>
-					</div>
-					<div class="date-row">
-						<div class="date-day">25/12/2012</div>
-						<div class="date-place">Razzmatazz</div>
-					</div>
-				</div>
-			</div>
-		</div>
+      </div>
+    </div>
 
-		<div class="container">
-			<div class="contact-section section">
-				<div class="social-links">
-					<a class="link social-link" href="">spotify</a>
-					
-					<a class="link social-link" href="">soundcloud</a>
-					
-					<a class="link social-link" href="">bandcamp</a>
-					
-					<a class="link social-link" href="">facebook</a>
-				</div>
-				<div class="email-section">
-					hi@dromnu.com
-				</div>
-			</div>
-		</div>
+    <div class="container">
+      <div class="dates-section section">
+        <div class="dates">
+          <div class="date-row">
+            <div class="date-day">1/10/2017</div>
+            <div class="date-place">Eufonic Festival</div>
+            <div class="date-type">visual for Skygaze</div>
+          </div>
+          <div class="date-row">
+            <div class="date-day">17/06/2017</div>
+            <div class="date-place">Sonar Festival</div>
+            <div class="date-type">visual for Huma</div>
+          </div>
+          <div class="date-row">
+            <div class="date-day">16/06/2016</div>
+            <div class="date-place">Stepbystep Collective</div>
+          </div>
+          <div class="date-row">
+            <div class="date-day">15/01/2016</div>
+            <div class="date-place">Razzmatazz</div>
+          </div>
+          <div class="date-row">
+            <div class="date-day">14/11/2015</div>
+            <div class="date-place">VERSAL</div>
+          </div>
+          <div class="date-row">
+            <div class="date-day">11/04/2015</div>
+            <div class="date-place">Lapsus festival</div>
+          </div>
+          <div class="date-row">
+            <div class="date-day">22/02/2015</div>
+            <div class="date-place">Red Bull Music Academy Bass Camp</div>
+          </div>
+          <div class="date-row">
+            <div class="date-day">14/11/2014</div>
+            <div class="date-place">Razzmatazz</div>
+          </div>  
+          <div class="date-row">
+            <div class="date-day">15/09/2014</div>
+            <div class="date-place">Mira Festival</div>
+          </div>
+          <div class="date-row">
+            <div class="date-day">16/11/2013</div>
+            <div class="date-place">Mira Festival</div>
+          </div>
+          <div class="date-row">
+            <div class="date-day">16/06/2013</div>
+            <div class="date-place">Sonar Festival</div>
+          </div>
+          <div class="date-row">
+            <div class="date-day">04/06/2013</div>
+            <div class="date-place">Fabrica Moritz</div>
+          </div>
+          <div class="date-row">
+            <div class="date-day">26/01/2013</div>
+            <div class="date-place">Discos Paradisco</div>
+          </div>
+          <div class="date-row">
+            <div class="date-day">25/12/2012</div>
+            <div class="date-place">Razzmatazz</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="contact-section section">
+        <div class="social-links">
+          <a class="link social-link" href="https://open.spotify.com/artist/1EAyXyzI7tcETjn8CMJlhC" target="_blank">spotify</a>
+          
+          <a class="link social-link" href="https://soundcloud.com/dromnu" target="_blank">soundcloud</a>
+          
+          <a class="link social-link" href="https://dromnu.bandcamp.com" target="_blank">bandcamp</a>
+          
+          <a class="link social-link" href="https://facebook.com/dromnu" target="_blank">facebook</a>
+        </div>
+        <div class="email-section">
+          hi@dromnu.com
+        </div>
+      </div>
+    </div>
 
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
