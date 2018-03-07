@@ -1,0 +1,141 @@
+.sc-artwork-list,
+.sc-info,
+.sc-info-toggle,
+.sc-pause,
+.sc-time-indicators,
+.sc-track-duration
+{
+  display: none;
+}
+.sc-waveform-container img {
+  height: 0px;
+  width: 100%;
+}
+.sc-volume-slider {
+  border: 1px solid green;
+  height: 50px;
+  display: none;
+}
+.sc-waveform-container {
+  height: 50px;
+  top: -25px;
+  width: 100%;
+  position: absolute;
+}
+.sc-volume-status {
+  border: 1px solid black;
+  height: 50px;
+  display: block;
+}
+.sc-trackslist {
+  background-color: transparent !important;
+  list-style: none;
+  padding: 0;
+  line-height: 1.7;
+  counter-reset: section;
+
+  li {
+    cursor: pointer;
+    color: $body-color;
+    opacity: .5;
+    transition: .4s;
+    &:before {
+      counter-increment: section;
+      content: counter(section) ". ";
+      width: 30px;
+      display: inline-block;
+      color: inherit;
+    }
+    a {
+      transition: .4s;
+    }
+    &:hover {
+      opacity: 1;
+      transition: .1s;
+    }
+    &.active {
+      opacity: 1;
+    }
+  }
+}
+.sc-time-span {
+  background-color: transparentize($body-color, .9);
+  position: relative;
+  height: 2px;
+  width: 100%;
+}
+.sc-buffer {
+  background-color: transparentize($body-color, .9);
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 10;
+  transition: .4s ease-in-out;
+}
+.sc-played {
+  background-color: $body-color;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 11;
+}
+
+.sc-player {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+.sc-controls {
+  position: absolute;
+  left: -40px;
+  top: -16px;
+}
+.sc-play {
+  width: 0;
+  height: 0;
+  font-size: 0;
+  border-style: solid;
+  border-width: 12px 0 12px 20.8px;
+  border-color: transparent transparent transparent $body-color;
+  transition: .2s;
+}
+.loading .sc-play {
+  width: 24px;
+  height: 24px;
+  display: block;
+  border-style: solid;
+  border-width: 2px;
+  border-color: transparentize($body-color, .8);
+  border-left-color: $body-color;
+  border-radius: 50%;
+  animation: load-spin 1s infinite linear;
+  margin-top: 4px;
+}
+@keyframes load-spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.sc-player.playing .sc-play {
+  animation: playing 3s infinite;
+}
+@keyframes playing {
+  50% {
+    opacity: .5;
+  }
+}
+.sc-scrubber {
+  order: 2;
+  width: 100%;
+  margin-bottom: 25px;
+}
+.sc-trackslist {
+  order: 3;
+}
+
+.sc-player-container {
+  padding-left: 40px;
+}

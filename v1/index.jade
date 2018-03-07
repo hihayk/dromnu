@@ -1,0 +1,163 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    title
+    meta(name='description', content='')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='styles/styles.css')
+  body
+    include ./includes/data.jade
+    .menu
+      a.menu-item(href='#music-section')
+        span M
+        span u
+        span s
+        span i
+        span c
+      a.menu-item(href='#dates-section')
+        span D
+        span a
+        span t
+        span e
+        span s
+      a.menu-item(href='#contact-section')
+        span C
+        span o
+        span n
+        span t
+        span a
+        span c
+        span t
+    .intro-section.flex.items-center
+      h1.logo
+        span D
+        span R
+        span Ö
+        span M
+        span N
+        span U
+    
+    #music-section.section
+    
+    .album-section.tnank
+      .section-container.h100
+        .album-container
+          .h50.flex.items-end
+            .player-left-offset
+              h2.album-title
+                | Tnank LP
+              p.album-info
+                span
+                  | Artwork by Christiaan Venter
+                br
+                span
+                  | Neonized Records
+          .h50
+            .sc-player-container
+              .sc-player
+                a(href='https://soundcloud.com/dromnu/d')
+                a(href='https://soundcloud.com/dromnu/r')
+                a(href='https://soundcloud.com/dromnu/m')
+    
+    .album-section.wd
+      .section-container.h100
+        .album-container
+          .h50.flex.items-end
+            .player-left-offset
+              h2.album-title
+                | Watching Darkness EP
+              p.album-info
+                span
+                  | Artwork by Christiaan Venter
+                br
+                span
+                  | Neonized Records
+          .h50
+            .sc-player-container
+              a.sc-player(href='https://soundcloud.com/dromnu/sets/watching-darkness')
+    
+    .album-section.dif
+      .section-container.h100
+        .album-container
+          .h50.flex.items-end
+            .player-left-offset
+              h2.album-title
+                | Deep In Forests EP
+              p.album-info
+                span
+                  | Artwork by Christiaan Venter
+                br
+                span
+                  | Neonized Records
+          .h50
+            .sc-player-container
+              a.sc-player(href='https://soundcloud.com/dromnu/sets/deep-in-forests')
+    
+    #dates-section.section
+    
+    .dates-section
+      .section-container.section-text-offset
+        .flex
+          .col-6
+            h2.section-title Dates
+          .col-6
+            .dates-list.table
+              .dates-list-item.tr
+                span.date.td 15/01/2016
+                span.name.td Razzmatazz
+              .dates-list-item.tr
+                span.date.td 14/11/2015
+                span.name.td VERSAL
+              .dates-list-item.tr
+                span.date.td 11/04/2015
+                span.name.td Lapsus festival
+              .dates-list-item.tr
+                span.date.td 22/02/2015
+                span.name.td Red Bull Music Academy Bass Camp
+              .dates-list-item.tr
+                span.date.td 14/11/2014
+                span.name.td Razzmatazz
+              .dates-list-item.tr
+                span.date.td 15/09/2014
+                span.name.td Mira Festival
+              .dates-list-item.tr
+                span.date.td 16/11/2013
+                span.name.td Mira Festival
+              .dates-list-item.tr
+                span.date.td 16/06/2013
+                span.name.td Sonar Festival
+              .dates-list-item.tr
+                span.date.td 04/06/2013
+                span.name.td Fabrica Moritz
+              .dates-list-item.tr
+                span.date.td 26/01/2013
+                span.name.td Discos Paradisco
+              .dates-list-item.tr
+                span.date.td 25/12/2012
+                span.name.td Razzmatazz
+    
+    #contact-section.section
+    .contact-section
+      .section-container.section-text-offset
+        h2.section-title Contact
+        
+        .block.mb2
+          .block hi@dromnu.com
+          .block hello@lapsusfestival.cat
+        
+        .block
+          .block
+            a(href="https://soundcloud.com/dromnu" target="_blank") Soundcloud
+          .block
+            a(href="https://www.facebook.com/dromnu" target="_blank") Facebook
+          .block
+            a(href="http://dromnu.bandcamp.com" target="_blank") Bandcamp
+
+    script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js')
+    script(type='text/javascript', src='soundcloud/js/soundcloud.player.api.js')
+    script(type='text/javascript', src='soundcloud/js/sc-player.js')
+    script(type='text/javascript', src='js/js.js')
+
+

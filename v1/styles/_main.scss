@@ -1,0 +1,233 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+}
+body {
+  background-color: $body-bg;
+  color: $body-color;
+  font-family: "GT-Walsheim";
+  font-feature-settings: "tnum";
+  letter-spacing: .05em;
+  counter-reset: section;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  animation: 4s load;
+}
+@keyframes load {
+  0% {
+    opacity: 0;
+  }
+}
+img {
+  max-width: 100%;
+}
+a {
+  color: inherit;
+  text-decoration: none; 
+}
+.container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.bg-grid-container {
+  padding: 0 40px;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+}
+.bg-grid {
+  height: 100vh;
+  display: flex;
+}
+.bg-col {
+  height: 100%;
+  flex-grow: 1;
+  border-left: 1px solid rgba(255,255,255,.0);
+  &:last-child {
+    border-right: 1px solid rgba(255,255,255,.0);
+  }
+}
+.intro-section {
+  min-height: 100vh;
+  padding: 50px;
+  z-index: 20;
+  position: relative;
+  background-color: $body-bg;
+  background-image: url('../images/dromnu-bg.gif');
+  background-size: cover;
+
+  @media screen and (max-width: 480px) {
+    min-height: 70vh;
+  }
+}
+.logo {
+  font-weight: 500;
+  font-size: 24px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  padding: 0 2px;
+}
+.logo.fixed {
+  font-weight: 700;
+  position: fixed;
+  top: 10px;
+  padding: 0 52px;
+  font-size: 14px;
+  opacity: .5;
+}
+
+.section-container {
+  padding: 50px;
+  width: 100%;
+
+  @media screen and (max-width: 480px) {
+    padding: 25px 25px 25px 50px;
+  }
+}
+.drom {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: -1;
+  opacity: .1;
+}
+.album-container {
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+  padding: 50px;
+
+  @media screen and (max-width: 480px) {
+    padding: 25px;
+  }
+}
+.album-section {
+  @media screen and (min-width: 480px) {
+    height: 100vh;
+  }
+  
+  &.tnank .album-container {
+    background-image: url('../images/tnank-bg.jpg');
+  }
+  &.wd .album-container {
+    background-image: url('../images/wd-bg.jpg');
+  }
+  &.dif .album-container {
+    background-image: url('../images/dif-bg.jpg');
+  }
+}
+.album-title {
+  letter-spacing: .1em;
+  font-size: 20px;
+  font-weight: 500;
+}
+.album-info {
+  margin-bottom: 40px;
+}
+
+.player-left-offset {
+  padding-left: 40px;
+
+  @media screen and (max-width: 480px) {
+    padding-left: 0px;    
+  }
+}
+
+.border {
+  border: 1px solid pink;
+}
+.h50 {
+  height: 50%;
+}
+.h100 {
+  height: 100%;
+}
+.flex-1 {
+  flex-grow: 1;
+}
+
+.menu {
+  position: fixed;
+  z-index: 20;  
+  left: 0;
+  top: 20px;
+  bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+.menu-item {
+  flex-grow: 1;
+  display: flex;
+  width: 50px;
+  flex-direction: column;
+  text-align: center;
+  text-transform: uppercase;
+  opacity: .4;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &.active {
+    opacity: 1;
+  }
+
+  span {
+    flex-grow: 1;
+  }
+}
+
+.dates-section {
+  min-height: 100vh;
+  // background-color: rgba(255,255,255,.8);
+  background-color: transparentize($body-color, 0.95);
+  background-image: url('../images/dates-bg.gif');
+}
+
+.dates-section,
+.contact-section {
+  color: $body-color-2;
+  display: flex;
+  align-items: center;
+}
+
+.dates-list-item {
+  .date {
+    display: inline-block;
+    width: 130px;
+    opacity: .5;
+  }
+}
+
+.contact-section {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.section-text-offset {
+  padding-left: 140px;
+
+  @media screen and (max-width: 480px) {
+    padding-left: 50px;    
+  }
+}
+
+.section-title {
+  color: $body-color-2;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 50px;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 30px;
+
+  @media screen and (max-width: 480px) {
+    letter-spacing: 20px;
+  }
+}
