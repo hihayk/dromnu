@@ -3,277 +3,27 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
+    <title>DRÖMNU</title>
+    <meta name="description" content="DRÖMNU music space">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
-
-    <style>
-      @font-face {
-        font-family: 'SharpGroteskDB';
-        src: url('fonts/SharpGroteskMedium22.woff2') format('woff2'),
-            url('fonts/SharpGroteskMedium22.woff') format('woff');
-        font-weight: 500;
-        font-style: normal;
-      }
-
-      @font-face {
-        font-family: 'SharpGroteskDB';
-        src: url('fonts/SharpGroteskBook22.woff2') format('woff2'),
-            url('fonts/SharpGroteskBook22.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-      }
-
-      @font-face {
-        font-family: 'SharpGroteskDB';
-        src: url('fonts/SharpGroteskSmBold22.woff2') format('woff2'),
-            url('fonts/SharpGroteskSmBold22.woff') format('woff');
-        font-weight: bold;
-        font-style: normal;
-      }
-
-      *,*:before,*:after {
-        box-sizing: border-box;
-      }
-      body {
-        background-color: #262626;
-        color: #ccc;
-        font-family: 'SharpGroteskDB';
-        font-size: 16px;
-        line-height: 22px;
-
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-      @media (max-width: 720px) {
-        body {
-          font-size: 14px;
-          line-height: 18px;
-        }
-      }
-      img {
-        max-width: 100%;
-      }
-      a {
-        display: inline-block;
-        color: inherit;
-        text-decoration: none;
-      }
-      .link {
-        box-shadow: inset 0 -1px rgba(255,255,255,.2);
-      }
-      @media (min-width: 720px) {
-        .intro-section {
-          min-height: 90vh;
-          display: flex;
-          align-items: center;
-          width: 100%;
-          margin-bottom: 64px;
-        }
-      }
-      .intro-section-content {
-        width: 100%;  
-      }
-      .main-title {
-        color: white;
-        display: flex;
-        margin: 24px auto 64px auto;
-        padding: 0 32px;
-        max-width: 1280px;
-        font-size: 20px;
-        font-weight: bold;
-        
-      }
-      @media (min-width: 720px) {
-        .main-title {
-          padding: 0 96px;
-          margin: -96px auto 0 auto;
-        }
-      }
-      .main-title span:not(:last-child) {
-        flex-grow: 1;
-      }
-      .intro-image-section {
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-      }
-      .release-cover-image {
-        max-width: 128px;
-        mix-blend-mode: screen;
-        filter: grayscale(100%);
-        transition: .4s;
-      }
-      .container {
-        max-width: 704px;
-        padding-left: 32px;
-        padding-right: 32px;
-        margin: 0 auto;
-      }
-      .release-box {
-        display: flex;
-        padding-bottom: 32px;
-        background-color: #262626;
-        transition: .4s;
-      }
-      .release-box:hover {
-        background-color: transparent;
-      }
-      .release-box:hover .release-cover-image {
-        filter: grayscale(0%);
-      }
-      .release-cover {
-        margin-right: 32px;
-      }
-      @media (max-width: 720px) {
-        .release-cover {
-          margin-right: 16px;
-        }
-      }
-      .release-name {
-        margin: 0;
-        font-weight: bold;
-        font-size: inherit;
-        line-height: inherit;
-      }
-      .release-label {
-        margin: 0;
-        font: inherit;
-        opacity: .4;
-      }
-      .release-year {
-        opacity: .4;
-      }
-      .release-vinyl {
-        flex-shrink: 0;
-        background-color: #181818;
-        width: 128px;
-        height: 128px;
-        margin-left: -160px;
-        margin-right: 32px;
-        border-radius: 50%;
-        position: relative;
-        filter: grayscale(100%);
-        transition: .4s;
-      }
-      .release-box:hover .release-vinyl {
-        filter: grayscale(0%);
-      }
-      .release-vinyl:before {
-        content: '';
-        width: 48px;
-        height: 48px;
-        position: absolute;
-        border-radius: 50%;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        background-size: 48px;
-      }
-      .release-vinyl:after {
-        content: '';
-        background-color: #262626;
-        width: 4px;
-        height: 4px;
-        position: absolute;
-        border-radius: 50%;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        margin: auto;
-      }
-      .release-vinyl-tnank:before {
-        background-image: url('images/tnank-label.png');
-      }
-      .release-vinyl-va:before {
-        background-image: url('images/va-label.png');
-      }
-      .release-vinyl-deu:before {
-        background-image: url('images/deu-label.png');
-      }
-      .release-vinyl-deu {
-        background-color: #AE0200;
-      }
-      .date-row {
-        display: flex;
-      }
-      @media (max-width: 720px) {
-        .date-row {
-          flex-direction: column;
-          align-items: flex-start;
-          margin-bottom: 8px;
-        }
-      }
-      .date-day {
-        width: 160px;
-        opacity: .3;
-        flex-shrink: 0;
-      }
-      .date-type {
-        opacity: .3;
-      }
-      .date-place {
-        margin-right: 8px;
-      }
-      .section {
-        margin-bottom: 128px;
-      }
-      .social-links {
-        margin-bottom: 8px;
-      }
-      @media (max-width: 720px) {
-        .social-links {
-          display: flex;
-          flex-direction: column;
-          align-items: flex-start;
-        }
-      }
-      .social-link {
-        margin-right: 4px;
-      }
-      .email-section {
-        opacity: .4;
-      }
-      .play-section {
-        margin-top: 8px;
-      }
-      .play-link {
-        opacity: .5;
-      }
-      .player-section {
-        margin-bottom: 32px;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     
-    <div class="intro-section">
-      <div class="intro-section-content">
-        <div class="intro-image-section">
-          <img src="images/dromnu.png" alt="Drömnu">
+    <div class="intro-section-content">
+      <div class="main-title">
+        DRÖMNU
+      </div>
+
+      <div class="intro-image-section">
+        <img src="images/dromnu.png" alt="Drömnu">
+      </div>
         </div>
-        
-        <div class="main-title">
-          <span>D</span>
-          <span>R</span>
-          <span>Ö</span>
-          <span>M</span>
-          <span>N</span>
-          <span>U</span>
         </div>
       </div>
     </div>
-
-    <!-- <div class="container">
-      <div class="player-section section">
-        <iframe src="https://open.spotify.com/embed/artist/1EAyXyzI7tcETjn8CMJlhC" width="100%" frameborder="0" allowtransparency="true"></iframe>
-      </div>
-    </div> -->
 
     <div class="container">
       <div class="releases-section section">
@@ -285,6 +35,7 @@
           <div class="release-info">
             <h2 class="release-name">
               Z G A
+              <span class="release-type">Single</span>
             </h2>
             <div class="release-year">
               2023
@@ -298,14 +49,18 @@
         </div>
         
         <div class="release-box">
-          <div class="release-vinyl release-vinyl-tnank"></div>
+          <div 
+            class="release-vinyl release-vinyl-tnank" 
+            style="--vinyl-label: url('images/tnank-label.png');"
+          ></div>
 
           <div class="release-cover">
             <img src="images/tnank-cover.png" alt="tnank-cover" class="release-cover-image">
           </div>
           <div class="release-info">
             <h2 class="release-name">
-              Tnank LP
+              Tnank
+              <span class="release-type">LP</span>
             </h2>
             <h3 class="release-label">
               Lapsus Records
@@ -327,7 +82,8 @@
           </div>
           <div class="release-info">
             <h2 class="release-name">
-              Watching Darkness EP
+              Watching Darkness
+              <span class="release-type">EP</span>
             </h2>
             <h3 class="release-label">
               Neonized Records
@@ -349,7 +105,8 @@
           </div>
           <div class="release-info">
             <h2 class="release-name">
-              The Witches Ride EP
+              The Witches Ride
+              <span class="release-type">EP</span>
             </h2>
             <h3 class="release-label">
               Neonized Records
@@ -361,7 +118,11 @@
         </div>
 
         <div class="release-box">
-          <div class="release-vinyl release-vinyl-va"></div>
+          <div 
+            class="release-vinyl release-vinyl-va"
+            style="--vinyl-label: url('images/va-label.png');"
+          >
+          </div>
 
           <div class="release-cover">
             <img src="images/va.png" alt="va" class="release-cover-image">
@@ -385,7 +146,14 @@
         </div>
 
         <div class="release-box">
-          <div class="release-vinyl release-vinyl-deu"></div>
+          <div 
+            class="release-vinyl release-vinyl-deu"
+            style="
+              --vinyl-label: url('images/deu-label.png');
+              --vinyl-color: #AE0200;
+            "
+          >
+          </div>
 
           <div class="release-cover">
             <img src="images/deu.png" alt="deu" class="release-cover-image">
@@ -414,9 +182,8 @@
           </div>
           <div class="release-info">
             <h2 class="release-name">
-              Heartsrevolution 
-              <br>
-              Remix
+              Heavens Gate
+              <span class="release-type">Remix for Heartsrevolution</span>
             </h2>
             <h3 class="release-label">
               Owsla Records
@@ -433,9 +200,8 @@
           </div>
           <div class="release-info">
             <h2 class="release-name">
-              Pina
-              <br>
-              Remix
+              Bondi
+              <span class="release-type">Remix for Pina</span>
             </h2>
             <h3 class="release-label">
               Lapsus Records
