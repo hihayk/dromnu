@@ -33,6 +33,7 @@ body {
   font-family: 'MetamorBit_Noise';
   font-size: var(--body-size);
   line-height: 1.4;
+  font-variation-settings: "wdth" 400;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -288,16 +289,22 @@ a {
 
 @media (max-width: 720px) {
   .date-row {
-    flex-direction: column;
+    /* flex-direction: column;
     align-items: flex-start;
-    margin-bottom: 8px;
+    margin-bottom: 8px; */
   }
 }
 
 .date-day {
   width: calc(var(--cover-size) + var(--release-gap));
   color: var(--c3);
-  flex-shrink: 0;
+  flex-shrink: 0; 
+}
+
+@media (max-width: 720px) {
+  .date-day {
+    font-variation-settings: "wdth" 200;
+  } 
 }
 
 .date-type {
