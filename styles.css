@@ -92,17 +92,23 @@ a {
 .main-title {
   writing-mode: vertical-rl;
   text-orientation: upright;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
   letter-spacing: 0.7ex;
-  font-variation-settings: "wdth" 600;
+  font-variation-settings: "wdth" 400;
+  z-index: 1;
 }
 
 @media (max-width: 720px) {
   .main-title {
     font-size: 1.2rem;
     letter-spacing: 0.5ex;
-    padding-left: 2rem;
-    padding-top: 2rem;
+    padding-top: 1.5rem;
+    width: calc(var(--cover-size) / 2 + var(--release-gap));
+    display: grid;
+    flex-shrink: 0;
+    text-align: center;
+    align-content: center;
+    justify-content: start;
   }
 }
 
@@ -121,7 +127,8 @@ a {
 
 @media (max-width: 720px) {
   .intro-image-section {
-    max-width: 50vw;
+    max-width: 100%;
+    margin-bottom: 4rem;
   }
 }
 
