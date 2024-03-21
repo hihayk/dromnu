@@ -10,7 +10,7 @@
   --c3: hsl(0 0% 100% / 0.4);
   --body-size: 16px;
   --cover-size: 160px;
-  --release-gap: 16px;
+  --release-gap: 1rem;
   --vinyl-bg: #181818;;
   --page-width: 1280px;
   --page-padding: 2rem;
@@ -18,7 +18,8 @@
 
 @media (max-width: 720px) {
   :root {
-    --cover-size: 18vw;
+    --cover-size: 22vw;
+    --release-gap: 4vw;
     --body-size: 14px;
   }
 }
@@ -181,16 +182,9 @@ a {
   mix-blend-mode: plus-lighter;
 }
 
-.release-box:hover .release-info {
-  /* mix-blend-mode: normal; */
-}
-
-@keyframes wobble {
-  0% {
-    font-variation-settings: "wdth" 400;
-  }
-  100% {
-    font-variation-settings: "wdth" 600;
+@media (max-width: 720px) {
+  .release-info {
+    padding-right: 0.5rem;
   }
 }
 
@@ -200,13 +194,13 @@ a {
   font-size: inherit;
   line-height: inherit;
   font-variation-settings: "wdth" 600;
-  animation: wobble 4s;
 }
 
 .release-type {
   font-variation-settings: "wdth" 400;
   display: block;
   color: var(--c2);
+  word-break: break-all;
 }
 
 .release-label {
@@ -279,7 +273,7 @@ a {
 @media (max-width: 720px) {
   .dates {
     padding-left: calc(var(--cover-size) /2 + var(--release-gap));
-    padding-right: calc(var(--cover-size) /2 + var(--release-gap));
+    padding-right: 0.5rem;
   }
 }
 
