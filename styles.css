@@ -31,10 +31,12 @@
 body {
   background-color: var(--bg);
   color: var(--c);
-  font-family: 'MetamorBit_Noise';
+  /* font-family: 'MetamorBit_Noise'; */
+  font-family: 'Metamor Bit';
   font-size: var(--body-size);
-  line-height: 1.4;
+  line-height: 1.5;
   font-variation-settings: "wdth" 400;
+  letter-spacing: 0.07em;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -83,9 +85,10 @@ a {
   writing-mode: vertical-rl;
   text-orientation: upright;
   font-size: 1.5rem;
+  font-weight: normal;
   letter-spacing: 0.7ex;
   font-variation-settings: "wdth" 400;
-  z-index: 1;
+  z-index: 2;
 }
 
 @media (max-width: 720px) {
