@@ -131,7 +131,7 @@ a {
 
 .intro-image-section {
   align-items: flex-start;
-  width: 840px;
+  max-width: 840px;
   margin-top: 6rem;
 }
 
