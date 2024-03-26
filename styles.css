@@ -6,8 +6,8 @@
 :root {
   --bg: #080808;
   --c: #ccc;
-  --c2: hsl(0 0% 100% / 0.6);
-  --c3: hsl(0 0% 100% / 0.4);
+  --c2: hsl(0 0% 60%);
+  --c3: hsl(0 0% 40%);
   --body-size: 16px;
   --cover-size: 160px;
   --release-gap: 1rem;
@@ -32,8 +32,8 @@ body {
   margin: 0;
   background-color: var(--bg);
   color: var(--c);
-  /* font-family: 'MetamorBit_Noise'; */
-  font-family: 'Metamor Bit';
+  font-family: 'MetamorBit_Noise';
+  /* font-family: 'Metamor Bit'; */
   font-size: var(--body-size);
   line-height: 1.4;
   font-variation-settings: "wdth" 400;
@@ -207,6 +207,7 @@ footer {
 
 @media (max-width: 720px) {
   .release-cover {
+    
   }
 }
 
