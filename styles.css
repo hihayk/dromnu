@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'MetamorBit_Noise';
-  src: url('fonts/MetamorBit_NoiseVF.woff2') format('woff2');
+  font-family: 'MetamorBit';
+  src: url('fonts/MetamorBit-Regular.woff2') format('woff2');
 }
 
 :root {
@@ -32,8 +32,7 @@ body {
   margin: 0;
   background-color: var(--bg);
   color: var(--c);
-  font-family: 'MetamorBit_Noise';
-  /* font-family: 'Metamor Bit'; */
+  font-family: 'MetamorBit', monospace;
   font-size: var(--body-size);
   line-height: 1.4;
   font-variation-settings: "wdth" 400;
@@ -216,6 +215,23 @@ footer {
   mix-blend-mode: plus-lighter;
 }
 
+.release-box:hover .release-info {
+  /* mix-blend-mode: normal; */
+}
+
+.release-name,
+.release-label,
+.release-year {
+  width: fit-content;
+}
+
+
+.release-box:hover .release-name, 
+.release-box:hover .release-label, 
+.release-box:hover .release-year {
+  /* background: var(--bg); */
+}
+
 @media (max-width: 720px) {
   .release-info {
     padding-right: var(--page-padding);
@@ -312,6 +328,10 @@ footer {
 
 .release-vinyl:before {
   background-image: var(--vinyl-label)
+}
+
+.dates {
+  mix-blend-mode: plus-lighter;
 }
 
 @media (max-width: 720px) {
