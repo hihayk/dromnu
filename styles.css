@@ -442,3 +442,9 @@ footer {
 .video-section iframe:hover {
   filter: grayscale(0%);
 }
+
+.section-title {
+  font-size: var(--body-size);
+  font-weight: normal;
+  color: var(--c2);
+}
