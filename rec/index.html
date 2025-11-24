@@ -39,14 +39,17 @@
               `<div class="track">
                 <audio src="/rec/audios/${track}"></audio>
                 <button class="play-pause"></button>
-                <input
-                  type="range"
-                  class="seek"
-                  min="0"
-                  max="100"
-                  value="0"
-                  step="0.1"
-                />
+                <div class="slider-wrapper">
+                  <input
+                    type="range"
+                    class="slider seek"
+                    min="0"
+                    max="100"
+                    value="0"
+                    step="0.1"
+                  />
+                  <div class="slider-track"></div>
+                </div>
               </div>`
           )
           .join("");
@@ -75,6 +78,7 @@
           this.audio = rootEl.querySelector("audio");
           this.playBtn = rootEl.querySelector(".play-pause");
           this.seek = rootEl.querySelector(".seek");
+          this.sliderWrapper = rootEl.querySelector(".slider-wrapper");
 
           AudioPlayer.instances.push(this);
 
@@ -98,6 +102,10 @@
             if (!this.audio.duration) return;
             const pct = (this.audio.currentTime / this.audio.duration) * 100;
             this.seek.value = pct;
+          });
+
+          this.audio.addEventListener("loadedmetadata", () => {
+            this.sliderWrapper.style.height = this.audio.duration * 1 + "px";
           });
 
           // Slider drag -> seek
