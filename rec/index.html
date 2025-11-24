@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>DRÖMNU REC</title>
+    <meta name="description" content="DRÖMNU music space" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../images/favicon-32x32.png"
+    />
+  </head>
+  <body>
+    <div id="tracks" class="tracks">
+      <div id="col1" class="col"></div>
+      <div id="col2" class="col"></div>
+      <div id="col3" class="col"></div>
+      <div id="col4" class="col"></div>
+      <div id="col5" class="col"></div>
+      <div id="col6" class="col"></div>
+      <div id="col7" class="col"></div>
+      <div id="col8" class="col"></div>
+      <div id="col9" class="col"></div>
+    </div>
+
+    <script>
+      const tracklist = {
+        col1: [
+          "shift.mp3",
+          "01.mp3",
+          "02.mp3",
+
+          "12. Break It to My Heart.mp3",
+          "shift.mp3",
+          "12. Break It to My Heart.mp3",
+          "01.mp3",
+        ],
+        col2: [
+          "02.mp3",
+          "shift.mp3",
+          "18 Kitty.mp3",
+
+          "12. Break It to My Heart.mp3",
+          "01.mp3",
+          "02.mp3",
+
+          "18 Kitty.mp3",
+        ],
+        col3: [
+          "shift.mp3",
+          "12. Break It to My Heart.mp3",
+          "18 Kitty.mp3",
+          "02.mp3",
+
+          "01.mp3",
+          "18 Kitty.mp3",
+          "shift.mp3",
+          "01.mp3",
+        ],
+        col4: [
+          "12. Break It to My Heart.mp3",
+          "18 Kitty.mp3",
+          "shift.mp3",
+          "01.mp3",
+          "02.mp3",
+
+          "12. Break It to My Heart.mp3",
+          "18 Kitty.mp3",
+        ],
+        col5: [
+          "18 Kitty.mp3",
+          "01.mp3",
+          "shift.mp3",
+          "12. Break It to My Heart.mp3",
+          "02.mp3",
+
+          "12. Break It to My Heart.mp3",
+          "18 Kitty.mp3",
+        ],
+        col6: [
+          "18 Kitty.mp3",
+          "shift.mp3",
+          "01.mp3",
+          "02.mp3",
+          "12. Break It to My Heart.mp3",
+
+          "12. Break It to My Heart.mp3",
+          "18 Kitty.mp3",
+        ],
+        col7: [
+          "18 Kitty.mp3",
+          "shift.mp3",
+          "12. Break It to My Heart.mp3",
+          "01.mp3",
+          "02.mp3",
+          "18 Kitty.mp3",
+          "12. Break It to My Heart.mp3",
+        ],
+        col8: [
+          "12. Break It to My Heart.mp3",
+          "18 Kitty.mp3",
+          "shift.mp3",
+          "01.mp3",
+          "02.mp3",
+
+          "12. Break It to My Heart.mp3",
+          "18 Kitty.mp3",
+        ],
+        col9: [
+          "12. Break It to My Heart.mp3",
+          "18 Kitty.mp3",
+          "shift.mp3",
+          "01.mp3",
+          "02.mp3",
+
+          "12. Break It to My Heart.mp3",
+          "18 Kitty.mp3",
+        ],
+      };
+
+      const tracks = document.getElementById("tracks");
+
+      Object.keys(tracklist).map((col) => {
+        const colEl = document.getElementById(col);
+
+        colEl.innerHTML = tracklist[col]
+          .map(
+            (track, i) =>
+              `
+            <div class="track">
+              <audio src="audios/${track}"></audio>
+              <button class="play-pause"></button>
+              <div class="progress">
+                <div class="progress-fill"></div>
+              </div>
+            </div>
+          `
+          )
+          .join("");
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const trackEls = document.querySelectorAll(".track");
+
+        const players = Array.from(trackEls).map((el) => new AudioPlayer(el));
+
+        // if you want to talk to p5 later, you now have `players` as your list
+      });
+
+      class AudioPlayer {
+        constructor(rootEl) {
+          this.root = rootEl;
+          this.audio = rootEl.querySelector("audio");
+          this.playBtn = rootEl.querySelector(".play-pause");
+          this.progress = rootEl.querySelector(".progress");
+          this.progressFill = rootEl.querySelector(".progress-fill");
+
+          this.isDragging = false;
+
+          this.bindEvents();
+        }
+
+        bindEvents() {
+          // Play / pause
+          this.playBtn.addEventListener("click", () => {
+            if (this.audio.paused) {
+              this.audio.play();
+            } else {
+              this.audio.pause();
+            }
+          });
+
+          this.audio.addEventListener("loadedmetadata", () => {
+            this.progress.style.height = this.audio.duration * 1 + "px";
+          });
+
+          // Update progress bar while playing
+          this.audio.addEventListener("timeupdate", () => {
+            if (this.isDragging) return; // don't fight the drag
+            const pct = this.audio.currentTime / this.audio.duration;
+            this.progressFill.style.height = `${pct * 100}%`;
+          });
+
+          // Click to seek
+          this.progress.addEventListener("click", (e) => {
+            const rect = this.progress.getBoundingClientRect();
+            const y = e.clientY - rect.top; // distance from top
+            const pct = y / rect.height; // 0 at top, 1 at bottom
+            this.seekToPercent(pct);
+          });
+
+          // Optional: drag to seek (simple version)
+          this.progress.addEventListener("mousedown", (e) => {
+            this.isDragging = true;
+            const move = (event) => {
+              const rect = this.progress.getBoundingClientRect();
+              const y = Math.min(
+                Math.max(event.clientY - rect.top, 0),
+                rect.height
+              );
+              const pct = y / rect.height;
+              this.progressFill.style.height = `${pct * 100}%`;
+              this.seekToPercent(pct, false); // update currentTime but don't auto-play if you don't want
+            };
+            const up = () => {
+              this.isDragging = false;
+              window.removeEventListener("mousemove", move);
+              window.removeEventListener("mouseup", up);
+            };
+
+            window.addEventListener("mousemove", move);
+            window.addEventListener("mouseup", up);
+          });
+        }
+
+        seekToPercent(pct, playAfter = true) {
+          if (!this.audio.duration || isNaN(this.audio.duration)) return;
+          this.audio.currentTime = this.audio.duration * pct;
+          if (playAfter && this.audio.paused) {
+            this.audio.play();
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
