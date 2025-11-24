@@ -154,3 +154,10 @@ body {
 #col7 { top:50px; }
 #col8 { top:150px; }
 #col9 { top:50px; }
+
+.seek {
+  writing-mode: vertical-lr; 
+  direction: rtl;
+  height: 150px;
+  transform: rotate(180deg);
+}
