@@ -6,6 +6,7 @@
     <meta name="description" content="DRÖMNU music space" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="styles.css" />
+    <script src="tracklist.js"></script>
     <link
       rel="icon"
       type="image/png"
@@ -27,100 +28,6 @@
     </div>
 
     <script>
-      const tracklist = {
-        col1: [
-          "shift.mp3",
-          "01.mp3",
-          "02.mp3",
-
-          "12. Break It to My Heart.mp3",
-          "shift.mp3",
-          "12. Break It to My Heart.mp3",
-          "01.mp3",
-        ],
-        col2: [
-          "02.mp3",
-          "shift.mp3",
-          "18 Kitty.mp3",
-
-          "12. Break It to My Heart.mp3",
-          "01.mp3",
-          "02.mp3",
-
-          "18 Kitty.mp3",
-        ],
-        col3: [
-          "shift.mp3",
-          "12. Break It to My Heart.mp3",
-          "18 Kitty.mp3",
-          "02.mp3",
-
-          "01.mp3",
-          "18 Kitty.mp3",
-          "shift.mp3",
-          "01.mp3",
-        ],
-        col4: [
-          "12. Break It to My Heart.mp3",
-          "18 Kitty.mp3",
-          "shift.mp3",
-          "01.mp3",
-          "02.mp3",
-
-          "12. Break It to My Heart.mp3",
-          "18 Kitty.mp3",
-        ],
-        col5: [
-          "18 Kitty.mp3",
-          "01.mp3",
-          "shift.mp3",
-          "12. Break It to My Heart.mp3",
-          "02.mp3",
-
-          "12. Break It to My Heart.mp3",
-          "18 Kitty.mp3",
-        ],
-        col6: [
-          "18 Kitty.mp3",
-          "shift.mp3",
-          "01.mp3",
-          "02.mp3",
-          "12. Break It to My Heart.mp3",
-
-          "12. Break It to My Heart.mp3",
-          "18 Kitty.mp3",
-        ],
-        col7: [
-          "18 Kitty.mp3",
-          "shift.mp3",
-          "12. Break It to My Heart.mp3",
-          "01.mp3",
-          "02.mp3",
-          "18 Kitty.mp3",
-          "12. Break It to My Heart.mp3",
-        ],
-        col8: [
-          "12. Break It to My Heart.mp3",
-          "18 Kitty.mp3",
-          "shift.mp3",
-          "01.mp3",
-          "02.mp3",
-
-          "12. Break It to My Heart.mp3",
-          "18 Kitty.mp3",
-        ],
-        col9: [
-          "12. Break It to My Heart.mp3",
-          "18 Kitty.mp3",
-          "shift.mp3",
-          "01.mp3",
-          "02.mp3",
-
-          "12. Break It to My Heart.mp3",
-          "18 Kitty.mp3",
-        ],
-      };
-
       const tracks = document.getElementById("tracks");
 
       Object.keys(tracklist).map((col) => {
@@ -151,6 +58,16 @@
       });
 
       class AudioPlayer {
+        // NEW: keep track of all players
+        static instances = [];
+        static lastActive = null; // NEW
+
+        static pauseAllExcept(player) {
+          AudioPlayer.instances.forEach((p) => {
+            if (p !== player) p.audio.pause();
+          });
+        }
+
         constructor(rootEl) {
           this.root = rootEl;
           this.audio = rootEl.querySelector("audio");
@@ -160,6 +77,9 @@
 
           this.isDragging = false;
 
+          // register this instance
+          AudioPlayer.instances.push(this);
+
           this.bindEvents();
         }
 
@@ -167,6 +87,8 @@
           // Play / pause
           this.playBtn.addEventListener("click", () => {
             if (this.audio.paused) {
+              AudioPlayer.pauseAllExcept(this);
+              AudioPlayer.lastActive = this; // NEW
               this.audio.play();
             } else {
               this.audio.pause();
@@ -220,10 +142,27 @@
           if (!this.audio.duration || isNaN(this.audio.duration)) return;
           this.audio.currentTime = this.audio.duration * pct;
           if (playAfter && this.audio.paused) {
+            AudioPlayer.pauseAllExcept(this);
+            AudioPlayer.lastActive = this; // NEW
             this.audio.play();
           }
         }
       }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.code === "Space") {
+          e.preventDefault(); // avoid page scroll
+          const p = AudioPlayer.lastActive;
+          if (p) {
+            if (p.audio.paused) {
+              AudioPlayer.pauseAllExcept(p);
+              p.audio.play();
+            } else {
+              p.audio.pause();
+            }
+          }
+        }
+      });
     </script>
   </body>
 </html>
