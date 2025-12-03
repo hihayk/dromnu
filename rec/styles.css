@@ -13,7 +13,7 @@
   --release-gap: 1rem;
   --vinyl-bg: #181818;;
   --page-width: 1280px;
-  --page-padding: 10px;
+  --page-padding: 0;
 }
 
 @media (max-width: 720px) {
@@ -43,6 +43,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.header {
+  text-box-trim: trim-both;
+  text-box-edge: cap alphabetic;
+  padding: 30px;
+  position: fixed;
+  bottom: 0;
+  /* backdrop-filter: blur(4px); */
+  /* background: hsl(0 0% 0% / 100%); */
+  z-index: 1;
+  text-shadow: 0 0 9px hsl(0 0% 0% / 100%);
+}
+
 .play-pause {
   height: 20px;
   width: 20px;
@@ -58,8 +70,10 @@ body {
   transition: 0.8s opacity cubic-bezier(0.64, 0.23, 0.68, 0.7);
   position: relative;
   top: 4px;
+  z-index: 1;
 }
 
+.track:has(.playing) .play-pause,
 .track:hover .play-pause {
   opacity: 1;
   transition: 0.3s opacity;
@@ -83,6 +97,7 @@ body {
 
 .track {
   margin-bottom: 16px;
+  transition: 0.1s opacity;
 }
 
 .col {
@@ -101,10 +116,23 @@ body {
 
 .slider-wrapper {
   --width: 44px;
+  --timing: cubic-bezier(0, 0, 0.39, 1);
 
-  height: 200px;
+  height: 20px;
   width: var(--width);
   position: relative;
+  transition: height 4s;
+  transition-timing-function: var(--timing);
+}
+
+.slider-track {
+  opacity: 1;
+  transition: opacity 4s;
+  transition-timing-function: var(--timing);
+}
+
+.slider-wrapper.ready .slider-track {
+  opacity: 1;
 }
 
 @media (max-width: 720px) {
@@ -133,7 +161,13 @@ body {
 
 .slider-track {
   pointer-events: none;
-  background: linear-gradient(90deg, #1F1F1F, #585858 37%, #B9B9B9 57%, #222222);
+  background: linear-gradient(
+    90deg, 
+    hsl(0, 0%, 12%), 
+    hsl(0, 0%, 35%) 37%, 
+    hsl(0, 0%, 73%) 57%, 
+    hsl(0, 0%, 13%)
+  );
   height: calc(100% + var(--tip-h) + 2px - 38px);
   width: 10px;
   position: absolute;
@@ -154,6 +188,13 @@ body {
   );
 }
 
+.tracks:has(.playing) .track {
+  opacity: 0.7;
+}
+
+.track:has(.playing) {
+  opacity: 1 !important;
+}
 
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none; 
@@ -173,10 +214,13 @@ body {
 
 .slider::-moz-range-thumb {
   width: var(--width);
-  height: 3px;
+  top: 0;
   left: 0;
-  bottom: -3px;
   background: linear-gradient(90deg, #B9B9B9, #1F1F1F 20%, #585858 37%, #B9B9B9 57%, #222222);
+  background-size: 100% 3px;
+  background-position-y: 18px;
   z-index: 1;
-  box-shadow: 0 0 8px black;
+  box-shadow: 0 0 8px -10px black;
+  height: 39px;
+  background-repeat: no-repeat;
 }

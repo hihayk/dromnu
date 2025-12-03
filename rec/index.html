@@ -15,7 +15,7 @@
     />
   </head>
   <body>
-    <div class="header">DRÖMNU REC</div>
+    <header class="header">DRÖMNU REC</header>
     <div id="tracks" class="tracks">
       <div id="col1" class="col"></div>
       <div id="col2" class="col"></div>
@@ -58,10 +58,8 @@
 
       document.addEventListener("DOMContentLoaded", () => {
         const trackEls = document.querySelectorAll(".track");
-
         const players = Array.from(trackEls).map((el) => new AudioPlayer(el));
-
-        // if you want to talk to p5 later, you now have `players` as your list
+        // you have `players` here if needed
       });
 
       class AudioPlayer {
@@ -96,6 +94,8 @@
             } else {
               this.audio.pause();
             }
+            // not strictly needed if we listen to 'play'/'pause', but ok:
+            this.updatePlayingClass();
           });
 
           // Update slider while playing
@@ -107,10 +107,31 @@
 
           this.audio.addEventListener("loadedmetadata", () => {
             this.sliderWrapper.style.height = this.audio.duration * 2 + "px";
+
+            if (this.audio.duration) {
+              this.sliderWrapper.classList.add("ready");
+            }
           });
+
+          // 🔴 Hook playing state to real audio events
+          this.audio.addEventListener("play", () => this.updatePlayingClass());
+          this.audio.addEventListener("pause", () => this.updatePlayingClass());
+          this.audio.addEventListener("ended", () => this.updatePlayingClass());
 
           // Slider drag -> seek
           this.seek.addEventListener("input", () => {
+            if (this.audio.paused && this.audio.currentTime === 0) {
+              // visually snap slider back to the start
+              this.seek.value = 0;
+
+              AudioPlayer.pauseAllExcept(this);
+              AudioPlayer.lastActive = this;
+              this.audio.play();
+              this.updatePlayingClass();
+              // don't jump to the clicked position
+              return;
+            }
+
             if (!this.audio.duration) return;
             const pct = this.seek.value / 100;
             this.audio.currentTime = this.audio.duration * pct;
@@ -120,7 +141,20 @@
               AudioPlayer.lastActive = this;
               this.audio.play();
             }
+            this.updatePlayingClass();
           });
+        }
+
+        isPlaying() {
+          return !this.audio.paused && !this.audio.ended;
+        }
+
+        updatePlayingClass() {
+          if (this.isPlaying()) {
+            this.sliderWrapper.classList.add("playing");
+          } else {
+            this.sliderWrapper.classList.remove("playing");
+          }
         }
       }
 
@@ -135,6 +169,8 @@
             } else {
               p.audio.pause();
             }
+            // make sure CSS follows spacebar too
+            p.updatePlayingClass();
           }
         }
       });
