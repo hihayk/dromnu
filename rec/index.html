@@ -102,13 +102,15 @@
             this.updatePlayingClass();
           });
 
+          const highMultiplier = 1.1
+
           // Update slider while playing
           this.audio.addEventListener("timeupdate", () => {
             if (!this.audio.duration) return;
             const pct = (this.audio.currentTime / this.audio.duration) * 100;
             this.seek.value = pct;
 
-            const height = this.audio.duration * 2;
+            const height = this.audio.duration * highMultiplier;
 
             this.sliderThumb.style.top =
               (height / this.audio.duration) * this.audio.currentTime + "px";
@@ -119,7 +121,7 @@
           });
 
           this.audio.addEventListener("loadedmetadata", () => {
-            this.sliderWrapper.style.height = this.audio.duration * 2 + "px";
+            this.sliderWrapper.style.height = this.audio.duration * highMultiplier + "px";
 
             if (this.audio.duration) {
               this.sliderWrapper.classList.add("ready");

@@ -230,5 +230,5 @@ body {
   width: var(--width);
   left: 0;
   background: linear-gradient(90deg, #B9B9B9, #1F1F1F 20%, #585858 37%, #B9B9B9 57%, #222222);
-  box-shadow: 0 6px 8px 2px black;
+  box-shadow: 0 2px 8px 2px black;
 }
