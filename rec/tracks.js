@@ -40,7 +40,6 @@ class AudioPlayer {
     this.playBtn = rootEl.querySelector(".play-pause");
     this.seek = rootEl.querySelector(".seek");
     this.sliderWrapper = rootEl.querySelector(".slider-wrapper");
-    this.sliderThumb = rootEl.querySelector(".slider-thumb");
     this.track = rootEl.querySelector(".track");
 
     AudioPlayer.instances.push(this);
@@ -69,15 +68,6 @@ class AudioPlayer {
       if (!this.audio.duration) return;
       const pct = (this.audio.currentTime / this.audio.duration) * 100;
       this.seek.value = pct;
-
-      const height = this.audio.duration * highMultiplier;
-
-      this.sliderThumb.style.top =
-        (height / this.audio.duration) * this.audio.currentTime + "px";
-
-      this.sliderThumb.style.transform = `translateY(-${
-        (39 * pct) / 100
-      }px)`;
     });
 
     this.audio.addEventListener("loadedmetadata", () => {
