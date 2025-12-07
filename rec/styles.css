@@ -14,6 +14,8 @@
   --vinyl-bg: #181818;;
   --page-width: 1280px;
   --page-padding: 0;
+  --thumb-height: 39px;
+  --thumb-head-height: 3px;
 }
 
 @media (max-width: 720px) {
@@ -50,10 +52,6 @@ body {
   position: fixed;
   top: 0;
   bottom: 0;
-  /* backdrop-filter: blur(4px); */
-  /* background: hsl(0 0% 0% / 100%); */
-  z-index: 1;
-  text-shadow: 0 0 9px hsl(0 0% 0% / 100%);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -225,7 +223,7 @@ body {
   height: calc(100% + var(--tip-h) + 2px - 38px);
   width: 10px;
   position: absolute;
-  top: calc((39px - 3px) / 2);
+  top: calc((var(--thumb-height) - var(--thumb-head-height)) / 2);
   left: 0;
   right: 0;
   margin: auto;
@@ -254,11 +252,11 @@ body {
   -webkit-appearance: none; 
   appearance: none;
   width: var(--width);
-  height: 39px;
+  height: var(--thumb-height);
   background: linear-gradient(90deg, #B9B9B9, #1F1F1F 20%, #585858 37%, #B9B9B9 57%, #222222);
-  background-size: 100% 3px;
+  background-size: 100% var(--thumb-head-height);
   background-repeat: no-repeat;
-  background-position-y: calc((39px - 3px) / 2);
+  background-position-y: calc((var(--thumb-height) - var(--thumb-head-height)) / 2);
   filter: drop-shadow(0 1px 2px black);
   box-shadow: none;
 }
@@ -268,11 +266,11 @@ body {
   left: 0;
   top: 0;
   width: var(--width);
-  height: 39px;
+  height: var(--thumb-height);
   background: linear-gradient(90deg, #B9B9B9, #1F1F1F 20%, #585858 37%, #B9B9B9 57%, #222222);
-  background-size: 100% 3px;
+  background-size: 100% var(--thumb-head-height);
   background-repeat: no-repeat;
-  background-position-y: calc((39px - 3px) / 2);
+  background-position-y: calc((var(--thumb-height) - var(--thumb-head-height)) / 2);
   filter: drop-shadow(0 1px 2px black);
   box-shadow: none;
 }
