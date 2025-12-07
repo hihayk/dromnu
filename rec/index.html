@@ -17,47 +17,40 @@
   <body>
     <header class="header">DRÖMNU REC</header>
     <div id="tracks" class="tracks">
-      <div id="col1" class="col"></div>
-      <div id="col2" class="col"></div>
-      <div id="col3" class="col"></div>
-      <div id="col4" class="col"></div>
-      <div id="col5" class="col"></div>
-      <div id="col6" class="col"></div>
-      <div id="col7" class="col"></div>
-      <div id="col8" class="col"></div>
-      <div id="col9" class="col"></div>
+      <div class="spacer1"></div>
+      <div class="spacer2"></div>
+      <div class="spacer3"></div>
+      <div class="spacer4"></div>
+      <div class="spacer5"></div>
+      <div class="spacer6"></div>
+      <div class="spacer7"></div>
+      <div class="spacer8"></div>
+      <div class="spacer9"></div>
     </div>
 
     <script>
       const tracks = document.getElementById("tracks");
 
-      Object.keys(tracklist).map((col) => {
-        const colEl = document.getElementById(col);
-
-        colEl.innerHTML = tracklist[col]
-          .map(
-            (track, i) =>
-              `<div class="track">
-                <audio src="/rec/audios/${track}"></audio>
-                <button class="play-pause"></button>
-                <div class="slider-wrapper">
-                  <input
-                    type="range"
-                    class="slider seek"
-                    min="0"
-                    max="100"
-                    value="0"
-                    step="0.1"
-                  />
-                  <div class="slider-thumb">
-                    <div class="slider-thumb-head"></div>
-                  </div>
-                  <div class="slider-track"></div>
-                </div>
-              </div>`
-          )
-          .join("");
-      });
+      tracks.innerHTML += tracklist.map((track) => `
+        <div class="track">
+          <audio src="/rec/audios/${track}"></audio>
+          <button class="play-pause"></button>
+          <div class="slider-wrapper">
+            <input
+              type="range"
+              class="slider seek"
+              min="0"
+              max="100"
+              value="0"
+              step="0.1"
+            />
+            <div class="slider-thumb">
+              <div class="slider-thumb-head"></div>
+            </div>
+            <div class="slider-track"></div>
+          </div>
+        </div>
+      `).join('')
 
       document.addEventListener("DOMContentLoaded", () => {
         const trackEls = document.querySelectorAll(".track");
@@ -82,6 +75,7 @@
           this.seek = rootEl.querySelector(".seek");
           this.sliderWrapper = rootEl.querySelector(".slider-wrapper");
           this.sliderThumb = rootEl.querySelector(".slider-thumb");
+          this.track = rootEl.querySelector(".track");
 
           AudioPlayer.instances.push(this);
 
@@ -102,7 +96,7 @@
             this.updatePlayingClass();
           });
 
-          const highMultiplier = 1.1
+          const highMultiplier = 1.2
 
           // Update slider while playing
           this.audio.addEventListener("timeupdate", () => {
@@ -121,7 +115,8 @@
           });
 
           this.audio.addEventListener("loadedmetadata", () => {
-            this.sliderWrapper.style.height = this.audio.duration * highMultiplier + "px";
+            this.sliderWrapper.style.height = Math.round(this.audio.duration * highMultiplier) + "px";
+            this.root.style.gridRow = `span ${Math.round(this.audio.duration * highMultiplier) + 32}`;
 
             if (this.audio.duration) {
               this.sliderWrapper.classList.add("ready");
