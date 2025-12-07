@@ -93,6 +93,7 @@ body {
 @media (max-width: 720px) {
   .tracks {
     grid-template-columns: repeat(3, 44px);
+    column-gap: 24px;
   }
 }
 
