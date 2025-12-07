@@ -77,21 +77,31 @@ body {
 }
 
 .play-pause {
-  height: 20px;
-  width: 20px;
+  height: 32px;
+  width: 32px;
   appearance: none;
   margin: 0 auto;
-  background: conic-gradient(#222222, #b5b5b5, #0b0b0b, #898989, #222222);
+  background: transparent;
   border: none;
   box-sizing: content-box;
-  border-radius: 100%;
   display: block;
   padding: 0;
   opacity: 0;
   transition: 0.8s opacity cubic-bezier(0.64, 0.23, 0.68, 0.7);
   position: relative;
-  top: 4px;
+  top: 12px;
   z-index: 1;
+}
+
+.play-pause:after {
+  content: '';
+  height: 20px;
+  width: 20px;
+  border-radius: 100%;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  background: conic-gradient(#222222, #b5b5b5, #0b0b0b, #898989, #222222);
 }
 
 .track:has(.playing) .play-pause,
@@ -233,7 +243,7 @@ body {
 }
 
 .tracks:has(.playing) .track {
-  opacity: 0.7;
+  opacity: 0.6;
 }
 
 .track:has(.playing) {
@@ -250,6 +260,7 @@ body {
   background-repeat: no-repeat;
   background-position-y: calc((39px - 3px) / 2);
   filter: drop-shadow(0 1px 2px black);
+  box-shadow: none;
 }
 
 .slider::-moz-range-thumb {
@@ -263,4 +274,5 @@ body {
   background-repeat: no-repeat;
   background-position-y: calc((39px - 3px) / 2);
   filter: drop-shadow(0 1px 2px black);
+  box-shadow: none;
 }
