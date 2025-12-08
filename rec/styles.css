@@ -84,7 +84,7 @@ body {
   box-sizing: content-box;
   display: block;
   padding: 0;
-  opacity: 0.001;
+  opacity: 0.001; /* fix for mobile */
   transition: 0.8s opacity cubic-bezier(0.64, 0.23, 0.68, 0.7);
   position: relative;
   top: 12px;
