@@ -42,6 +42,9 @@ class AudioPlayer {
     this.sliderWrapper = rootEl.querySelector(".slider-wrapper");
     this.track = rootEl.querySelector(".track");
 
+    // ⭐ register this audio element for visualization
+    AudioViz.registerAudioEl(this.audio);
+
     AudioPlayer.instances.push(this);
 
     this.bindEvents();
@@ -57,7 +60,6 @@ class AudioPlayer {
       } else {
         this.audio.pause();
       }
-      // not strictly needed if we listen to 'play'/'pause', but ok:
       this.updatePlayingClass();
     });
 
@@ -79,29 +81,32 @@ class AudioPlayer {
       }
     });
 
-    // 🔴 Hook playing state to real audio events
-    this.audio.addEventListener("play", () => this.updatePlayingClass());
+    // ⭐ Hook playing state + tell viz which analyser to use
+    this.audio.addEventListener("play", () => {
+      this.updatePlayingClass();
+      AudioPlayer.lastActive = this;
+      AudioViz.useFor(this.audio);  // <- active source for p5
+    });
+
     this.audio.addEventListener("pause", () => this.updatePlayingClass());
     this.audio.addEventListener("ended", () => this.updatePlayingClass());
 
     // Slider drag -> seek
     this.seek.addEventListener("input", () => {
       if (this.audio.paused && this.audio.currentTime === 0) {
-        // visually snap slider back to the start
         this.seek.value = 0;
 
         AudioPlayer.pauseAllExcept(this);
         AudioPlayer.lastActive = this;
         this.audio.play();
         this.updatePlayingClass();
-        // don't jump to the clicked position
         return;
       }
 
       if (!this.audio.duration) return;
       const pct = this.seek.value / 100;
       this.audio.currentTime = this.audio.duration * pct;
-      // optional: auto-play on seek:
+
       if (this.audio.paused) {
         AudioPlayer.pauseAllExcept(this);
         AudioPlayer.lastActive = this;
@@ -135,7 +140,6 @@ document.addEventListener("keydown", (e) => {
       } else {
         p.audio.pause();
       }
-      // make sure CSS follows spacebar too
       p.updatePlayingClass();
     }
   }
