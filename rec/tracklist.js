@@ -12,6 +12,7 @@ const tracklist = [
   `delay drums.mp3`,
   `UFX95_00.mp3`,
   // `UFX84_00.mp3`,
+  `fbrsh.mp3`,
   `ftg3.mp3`,
   `UFX30_00.mp3`,
 ]
